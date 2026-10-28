@@ -14,6 +14,7 @@
             <div class="logo">Dyana.dev</div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Me</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -22,35 +23,41 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero / Home Section -->
     <section id="home" class="hero">
         <h1>Hi, I'm Dyana Shaffiqah</h1>
         <p>Computer Science student passionate about web development, programming, and technology systems.</p>
     </section>
 
+    <!-- About Me Section -->
+    <section id="about" class="section">
+        <h2>About Me</h2>
+        <div class="about-card" style="background: var(--card-bg); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-color); backdrop-filter: blur(10px);">
+            <p style="color: var(--text-muted); margin-bottom: 1rem;">
+                I am a Computer Science student focused on modern web interface development, programming logic, and database management. I love exploring new technologies and building interactive, practical projects.
+            </p>
+            <p style="color: var(--text-muted);">
+                My core skills include foundational web development (HTML, CSS, JavaScript) as well as building efficient programming logic structures.
+            </p>
+        </div>
+    </section>
+
     <!-- Projects Section -->
     <section id="projects" class="section">
         <h2>My Projects</h2>
-       
         
         <!-- Filter Buttons -->
         <div class="filter-buttons">
             <button class="filter-btn active" data-filter="all">All</button>
             <button class="filter-btn" data-filter="web">Web</button>
-            <button class="filter-btn" data-filter="code">Code / Systems</button>
         </div>
 
-       <!-- Projects Grid -->
+        <!-- Projects Grid (Active Projects Only) -->
         <div class="projects-grid">
             <div class="project-card" data-category="web">
                 <h3>Personal Portfolio</h3>
                 <p>An interactive personal portfolio website built using HTML, CSS, and JavaScript.</p>
                 <a href="index.html">View Project &rarr;</a>
-            </div>
-            <div class="project-card" data-category="code">
-                <h3>Gym Database System</h3>
-                <p>A sports center and gym management application built with PHP and MariaDB/MySQL.</p>
-                <a href="#">View Project &rarr;</a>
             </div>
             <div class="project-card" data-category="web">
                 <h3>Interactive Calculator App</h3>
@@ -58,17 +65,40 @@
                 <a href="calculator.html">View Project &rarr;</a>
             </div>
         </div>
+    </section>
 
     <!-- Contact Section -->
     <section id="contact" class="section">
         <h2>Contact Me</h2>
-        <form id="contactForm">
-            <input type="text" id="name" placeholder="Your Name" required>
-            <input type="email" id="email" placeholder="Your Email" required>
-            <textarea id="message" placeholder="Your Message..." rows="4" required></textarea>
-            <button type="submit">Send Message</button>
-            <p class="feedback-msg" id="feedbackMsg"></p>
-        </form>
+        <div class="contact-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+            
+            <!-- Maklumat Peribadi / Info -->
+            <div class="contact-info" style="background: var(--card-bg); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-color); backdrop-filter: blur(10px);">
+                <h3 style="margin-bottom: 1rem; color: var(--accent-color);">Get in Touch</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+                    Feel free to reach out for collaborations, questions, or just to say hi!
+                </p>
+                <p style="color: var(--text-color); margin-bottom: 0.8rem;">
+                    <strong>Email:</strong> 103891@siswa.unimas.my
+                </p>
+                <p style="color: var(--text-color); margin-bottom: 0.8rem;">
+                    <strong>GitHub:</strong> <a href="https://github.com/dinolapo-ui" target="_blank" style="color: var(--accent-color); text-decoration: none;">github.com/dinolapo-ui</a>
+                </p>
+                <p style="color: var(--text-color);">
+                    <strong>Location:</strong> Sarawak, Malaysia
+                </p>
+            </div>
+
+            <!-- Borang Mesej -->
+            <form id="contactForm">
+                <input type="text" id="name" placeholder="Your Name" required>
+                <input type="email" id="email" placeholder="Your Email" required>
+                <textarea id="message" placeholder="Your Message..." rows="4" required></textarea>
+                <button type="submit">Send Message</button>
+                <p class="feedback-msg" id="feedbackMsg"></p>
+            </form>
+
+        </div>
     </section>
 
     <!-- Back to Top Button -->
