@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Calculator - Dyana's Project</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-color: #38bdf8;
+            --accent-hover: #0ea5e9;
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .calculator-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .calculator-container h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(to right, var(--accent-color), #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .calculator {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            max-width: 340px;
+            padding: 20px;
+        }
+
+        .calculator-screen {
+            width: 100%;
+            height: 60px;
+            background: rgba(15, 23, 42, 0.8);
+            color: var(--text-color);
+            font-size: 1.8rem;
+            text-align: right;
+            padding: 0 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        .calculator-keys {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .calculator-keys button {
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--text-color);
+            font-size: 1.2rem;
+            font-weight: 600;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .calculator-keys button:hover {
+            background-color: var(--accent-color);
+            color: #fff;
+            border-color: var(--accent-color);
+        }
+
+        .calculator-keys button.operator {
+            background-color: rgba(56, 189, 248, 0.15);
+            color: var(--accent-color);
+        }
+
+        .calculator-keys button.operator:hover {
+            background-color: var(--accent-color);
+            color: #fff;
+        }
+
+        .calculator-keys button.zero {
+            grid-column: span 2;
+        }
+
+        .calculator-keys button.equal-sign {
+            background-color: var(--accent-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-link">&larr; Back to Portfolio</a>
+
+    <div class="calculator-container">
+        <h1>Interactive Calculator</h1>
+        <div class="calculator">
+            <input type="text" id="calcScreen" class="calculator-screen" readonly value="0">
+            <div class="calculator-keys">
+                <button class="operator" data-action="clear">C</button>
+                <button class="operator" data-action="backspace">&larr;</button>
+                <button class="operator" value="/">/</button>
+                <button class="operator" value="*">&times;</button>
+                
+                <button value="7">7</button>
+                <button value="8">8</button>
+                <button value="9">9</button>
+                <button class="operator" value="-">-</button>
+                
+                <button value="4">4</button>
+                <button value="5">5</button>
+                <button value="6">6</button>
+                <button class="operator" value="+">+</button>
+                
+                <button value="1">1</button>
+                <button value="2">2</button>
+                <button value="3">3</button>
+                <button class="equal-sign operator" value="=">=</button>
+                
+                <button value="0" class="zero">0</button>
+                <button value=".">.</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const calculatorScreen = document.getElementById('calcScreen');
+        const keys = document.querySelector('.calculator-keys');
+
+        let currentInput = '0';
+        let calculationFinished = false;
+
+        keys.addEventListener('click', (event) => {
+            const target = event.target;
+            if (!target.matches('button')) return;
+
+            const value = target.value;
+            const action = target.getAttribute('data-action');
+
+            if (action === 'clear') {
+                currentInput = '0';
+                calculationFinished = false;
+                updateScreen();
+                return;
+            }
+
+            if (action === 'backspace') {
+                if (currentInput.length > 1) {
+                    currentInput = currentInput.slice(0, -1);
+                } else {
+                    currentInput = '0';
+                }
+                updateScreen();
+                return;
+            }
+
+            if (value === '=') {
+                try {
+                    let expression = currentInput.replace(/×/g, '*').replace(/÷/g, '/');
+                    let result = eval(expression);
+                    currentInput = String(result);
+                    calculationFinished = true;
+                } catch (error) {
+                    currentInput = 'Error';
+                    calculationFinished = true;
+                }
+                updateScreen();
+                return;
+            }
+
+            if (calculationFinished && !isNaN(value)) {
+                currentInput = value;
+                calculationFinished = false;
+            } else {
+                if (currentInput === '0' && !isNaN(value)) {
+                    currentInput = value;
+                } else {
+                    currentInput += value;
+                }
+                calculationFinished = false;
+            }
+            updateScreen();
+        });
+
+        function updateScreen() {
+            calculatorScreen.value = currentInput;
+        }
+    </script>
+</body>
+</html>
