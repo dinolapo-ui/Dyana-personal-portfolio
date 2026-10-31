@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz App - Dyana Shaffiqah</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0f0c1b;
+            color: #f3e8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .quiz-container {
+            background: #1e1b2e;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.2);
+            width: 400px;
+            border: 1px solid #3b0764;
+        }
+        h2 {
+            text-align: center;
+            color: #c084fc;
+            margin-bottom: 1.5rem;
+        }
+        .question {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #f3e8ff;
+        }
+        .options-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+        }
+        .option-btn {
+            padding: 10px 15px;
+            background-color: #2e1065;
+            color: #f3e8ff;
+            border: 1px solid #6b21a8;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: left;
+            transition: background 0.2s;
+        }
+        .option-btn:hover {
+            background-color: #581c87;
+        }
+        .option-btn.correct {
+            background-color: #16a34a !important;
+            border-color: #22c55e !important;
+        }
+        .option-btn.wrong {
+            background-color: #dc2626 !important;
+            border-color: #ef4444 !important;
+        }
+        #nextBtn {
+            width: 100%;
+            padding: 10px;
+            background-color: #9333ea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            display: none;
+        }
+        #nextBtn:hover {
+            background-color: #7e22ce;
+        }
+        .score-container {
+            text-align: center;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #c084fc;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container">
+        <h2>Tech Quiz</h2>
+        <div id="quizBox">
+            <div class="question" id="questionText">Question will appear here...</div>
+            <div class="options-buttons" id="optionsContainer"></div>
+            <button id="nextBtn">Next Question</button>
+        </div>
+        <div id="scoreBox" class="score-container" style="display: none;">
+            <h3>Quiz Completed!</h3>
+            <p id="finalScoreText" style="font-size: 1.2rem; margin: 1rem 0;"></p>
+            <button id="restartBtn" style="padding: 10px 20px; background-color: #9333ea; color: white; border: none; border-radius: 6px; cursor: pointer;">Try Again</button>
+        </div>
+        <a href="index.html" class="back-link">&larr; Back to Portfolio</a>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "Which programming language is used for the basic structure of web pages?",
+                options: ["Python", "HTML", "C++", "Java"],
+                answer: 1
+            },
+            {
+                question: "Which of the following is a graphics library for C++?",
+                options: ["Raylib", "React", "Tailwind", "Bootstrap"],
+                answer: 0
+            },
+            {
+                question: "Which HTML tag is used to create a hyperlink?",
+                options: ["<p>", "<a>", "<div>", "<img>"],
+                answer: 1
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        const questionText = document.getElementById('questionText');
+        const optionsContainer = document.getElementById('optionsContainer');
+        const nextBtn = document.getElementById('nextBtn');
+        const quizBox = document.getElementById('quizBox');
+        const scoreBox = document.getElementById('scoreBox');
+        const finalScoreText = document.getElementById('finalScoreText');
+        const restartBtn = document.getElementById('restartBtn');
+
+        function loadQuestion() {
+            nextBtn.style.display = 'none';
+            const currentQ = questions[currentQuestionIndex];
+            questionText.textContent = `${currentQuestionIndex + 1}. ${currentQ.question}`;
+            optionsContainer.innerHTML = '';
+
+            currentQ.options.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.textContent = option;
+                btn.className = 'option-btn';
+                btn.addEventListener('click', () => selectOption(index, btn));
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function selectOption(selectedIndex, selectedBtn) {
+            const currentQ = questions[currentQuestionIndex];
+            const allBtns = optionsContainer.querySelectorAll('.option-btn');
+
+            allBtns.forEach(b => b.disabled = true);
+
+            if (selectedIndex === currentQ.answer) {
+                selectedBtn.classList.add('correct');
+                score++;
+            } else {
+                selectedBtn.classList.add('wrong');
+                allBtns[currentQ.answer].classList.add('correct');
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        nextBtn.addEventListener('click', () => {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion();
+            } else {
+                quizBox.style.display = 'none';
+                scoreBox.style.display = 'block';
+                finalScoreText.textContent = `Your Score: ${score} / ${questions.length}`;
+            }
+        });
+
+        restartBtn.addEventListener('click', () => {
+            currentQuestionIndex = 0;
+            score = 0;
+            scoreBox.style.display = 'none';
+            quizBox.style.display = 'block';
+            loadQuestion();
+        });
+
+        loadQuestion();
+    </script>
+
+</body>
+</html>
