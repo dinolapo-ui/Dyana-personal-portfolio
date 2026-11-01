@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Dyana Shaffiqah</title>
+    <title>Dyana Shaffiqah - Professional Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,27 +18,35 @@
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <button id="themeToggleBtn" class="theme-btn" title="Toggle Theme">&#127765;</button>
+            <!-- Butang Ikon Tema (Dark/Light Mode) -->
+            <button id="themeToggleBtn" title="Toggle Theme">&#127765;</button>
             <div class="hamburger" id="hamburger">&#9776;</div>
         </nav>
     </header>
 
-    <!-- Hero / Home Section -->
+    <!-- Hero Section -->
     <section id="home" class="hero">
         <h1>Hi, I'm Dyana Shaffiqah</h1>
-        <p>Computer Science student passionate about web development, programming, and technology systems.</p>
+        <p>Computer Science student specializing in modern web development, programming logic, and interactive projects.</p>
     </section>
 
-    <!-- About Me Section -->
+    <!-- About Me Section with Profile Picture -->
     <section id="about" class="section">
-        <h2>About Me</h2>
-        <div class="about-card" style="background: var(--card-bg); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-color); backdrop-filter: blur(10px);">
-            <p style="color: var(--text-muted); margin-bottom: 1rem;">
-                I am a Computer Science student focused on modern web interface development, programming logic, and database management. I love exploring new technologies and building interactive, practical projects.
-            </p>
-            <p style="color: var(--text-muted);">
-                My core skills include foundational web development (HTML, CSS, JavaScript) as well as building efficient programming logic structures.
-            </p>
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-wrapper">
+                <div class="about-image-container">
+                    <img src="profile.jpg" alt="Dyana Shaffiqah's Profile Picture" class="profile-img">
+                </div>
+                <div class="about-card" style="background: var(--card-bg); padding: 2.5rem; border-radius: 12px; border: 1px solid var(--border-color); backdrop-filter: blur(10px); flex: 1;">
+                    <p style="color: #111111; margin-bottom: 1rem; font-size: 1.05rem;">
+                        I am a Computer Science student focused on modern web interface development, programming logic, and database management. I love exploring new technologies and building interactive, practical projects.
+                    </p>
+                    <p style="color: #111111; font-size: 1.05rem;">
+                        My core skills include foundational web development (HTML, CSS, JavaScript) as well as building efficient programming logic structures.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -46,17 +54,8 @@
     <section id="projects" class="section">
         <h2>My Projects</h2>
         
-        <!-- Filter Buttons -->
-        <div class="filter-buttons">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="web">Web</button>
-        </div>
-
-        
-     <!-- Projects Grid (Active Projects Only) -->
+        <!-- Projects Grid -->
         <div class="projects-grid">
-            
-            <!-- Projek 1 -->
             <div class="project-card" data-category="web">
                 <div>
                     <h3>Personal Portfolio</h3>
@@ -65,7 +64,6 @@
                 <a href="index.html">View Project &rarr;</a>
             </div>
             
-            <!-- Projek 2 -->
             <div class="project-card" data-category="web">
                 <div>
                     <h3>Interactive Calculator App</h3>
@@ -74,7 +72,6 @@
                 <a href="calculator.html">View Project &rarr;</a>
             </div>
             
-            <!-- Projek 3 -->
             <div class="project-card" data-category="code">
                 <div>
                     <h3>Snake Game (C++ Style)</h3>
@@ -83,7 +80,6 @@
                 <a href="snake.html">Play Game &rarr;</a>
             </div>
             
-            <!-- Projek 4 -->
             <div class="project-card" data-category="web">
                 <div>
                     <h3>To-Do List App</h3>
@@ -92,7 +88,6 @@
                 <a href="todo.html">View Project &rarr;</a>
             </div>
             
-            <!-- Projek 5 -->
             <div class="project-card" data-category="web">
                 <div>
                     <h3>Interactive Quiz App</h3>
@@ -100,47 +95,35 @@
                 </div>
                 <a href="quiz.html">View Project &rarr;</a>
             </div>
-
         </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="section">
         <h2>Contact Me</h2>
-        <div class="contact-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
-            
-            <!-- Maklumat Peribadi / Info -->
-            <div class="contact-info" style="background: var(--card-bg); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-color); backdrop-filter: blur(10px);">
-                <h3 style="margin-bottom: 1rem; color: var(--accent-color);">Get in Touch</h3>
-                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
-                    Feel free to reach out for collaborations, questions, or just to say hi!
-                </p>
-                <p style="color: var(--text-color); margin-bottom: 0.8rem;">
-                    <strong>Email:</strong> 103891@siswa.unimas.my
-                </p>
-                <p style="color: var(--text-color); margin-bottom: 0.8rem;">
-                    <strong>GitHub:</strong> <a href="https://github.com/dinolapo-ui" target="_blank" style="color: var(--accent-color); text-decoration: none;">github.com/dinolapo-ui</a>
-                </p>
-                <p style="color: var(--text-color);">
-                    <strong>Location:</strong> Sarawak, Malaysia
-                </p>
-            </div>
-
-            <!-- Borang Mesej -->
-            <form id="contactForm">
-                <input type="text" id="name" placeholder="Your Name" required>
-                <input type="email" id="email" placeholder="Your Email" required>
-                <textarea id="message" placeholder="Your Message..." rows="4" required></textarea>
-                <button type="submit">Send Message</button>
-                <p class="feedback-msg" id="feedbackMsg"></p>
-            </form>
-
-        </div>
+        <form id="contactForm">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
     </section>
 
     <!-- Back to Top Button -->
-    <button id="backToTopBtn">&#8679;</button>
+    <button id="backToTopBtn">&#8593;</button>
 
-    <script src="script.js"></script>
+    <!-- JavaScript ringkas untuk Toggle Tema & Menu Mobile -->
+    <script>
+        const themeBtn = document.getElementById('themeToggleBtn');
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+        });
+
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
