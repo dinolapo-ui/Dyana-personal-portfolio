@@ -18,25 +18,11 @@
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-           <script>
-    const themeBtn = document.getElementById('themeToggleBtn');
-    themeBtn.addEventListener('click', () => {
-        document.body.classList.toggle('light-mode');
-        
-        // Tukar ikon mengikut mod semasa
-        if (document.body.classList.contains('light-mode')) {
-            themeBtn.innerHTML = '&#9728;'; // Ikon Matahari (Mod Cerah)
-        } else {
-            themeBtn.innerHTML = '&#127765;'; // Ikon Bulan (Mod Gelap)
-        }
-    });
-
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-    });
-</script>
+            <!-- Butang Ikon Tema & Hamburger (Wajib Ada di Sini) -->
+            <button id="themeToggleBtn" title="Toggle Theme">&#127765;</button>
+            <div class="hamburger" id="hamburger">&#9776;</div>
+        </nav>
+    </header>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
@@ -126,11 +112,17 @@
     <!-- Back to Top Button -->
     <button id="backToTopBtn">&#8593;</button>
 
-    <!-- JavaScript ringkas untuk Toggle Tema & Menu Mobile -->
+    <!-- JavaScript diletakkan di PALING BAWAH sebelum </body> -->
     <script>
         const themeBtn = document.getElementById('themeToggleBtn');
         themeBtn.addEventListener('click', () => {
             document.body.classList.toggle('light-mode');
+            
+            if (document.body.classList.contains('light-mode')) {
+                themeBtn.innerHTML = '&#9728;'; // Ikon Matahari
+            } else {
+                themeBtn.innerHTML = '&#127765;'; // Ikon Bulan
+            }
         });
 
         const hamburger = document.getElementById('hamburger');
