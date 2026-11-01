@@ -18,11 +18,25 @@
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <!-- Butang Ikon Tema (Dark/Light Mode) -->
-           <button id="themeToggleBtn" title="Toggle Theme">&#127765;</button>
-            <div class="hamburger" id="hamburger">&#9776;</div>
-        </nav>
-    </header>
+           <script>
+    const themeBtn = document.getElementById('themeToggleBtn');
+    themeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('light-mode');
+        
+        // Tukar ikon mengikut mod semasa
+        if (document.body.classList.contains('light-mode')) {
+            themeBtn.innerHTML = '&#9728;'; // Ikon Matahari (Mod Cerah)
+        } else {
+            themeBtn.innerHTML = '&#127765;'; // Ikon Bulan (Mod Gelap)
+        }
+    });
+
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+</script>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
